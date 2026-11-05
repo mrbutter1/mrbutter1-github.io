@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#14161c" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Pratzen-Reflex</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="stylesheet" href="game.css" />
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <div id="hud" class="hidden">
+    <div class="hud-item"><span class="lbl">Punkte</span><span id="score">0</span></div>
+    <div class="hud-item center"><span class="lbl">Combo</span><span id="combo">x1</span></div>
+    <div class="hud-item right"><span class="lbl">Leben</span><span id="lives">❤❤❤</span></div>
+  </div>
+
+  <section id="start" class="screen">
+    <h1>Pratzen<span>Reflex</span></h1>
+    <ul class="rules">
+      <li><i class="dot blue"></i><span>Blaue Pratze: treffen, bevor der Ring abläuft</span></li>
+      <li><i class="dot gold"></i><span>Goldene Pratze: Bonuspunkte</span></li>
+      <li><i class="dot red"></i><span>Rote Pratze: <b>nicht</b> schlagen, ausweichen!</span></li>
+      <li>Daneben schlagen bricht deine Combo.</li>
+    </ul>
+    <button id="btnStart" class="btn">Los geht's</button>
+    <p class="best">Bestwert: <span id="bestStart">0</span></p>
+    <button id="btnSound" class="btn-small">🔊 Ton an</button>
+  </section>
+
+  <section id="over" class="screen hidden">
+    <h2>K.O.</h2>
+    <p class="final"><span id="finalScore">0</span><small>Punkte</small></p>
+    <p id="newBest" class="new-best hidden">Neuer Bestwert!</p>
+    <p class="best">Bestwert: <span id="bestOver">0</span></p>
+    <p class="stats" id="stats"></p>
+    <button id="btnAgain" class="btn">Nochmal</button>
+  </section>
+
+  <script src="game.js"></script>
+</body>
+</html>
