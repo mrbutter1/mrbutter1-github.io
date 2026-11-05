@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f1220" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Infinite Roll" />
+  <title>Infinite Roll</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <div class="balance-label">Balance</div>
+      <div id="currency" class="balance">0</div>
+      <div class="chips">
+        <span class="chip" title="Effective Luck">🍀 <b id="chipLuck">x1.00</b></span>
+        <span class="chip" title="Rolls per click">🎲 <b id="chipMulti">1</b></span>
+        <span class="chip" title="Rebirths">♻️ <b id="chipRebirth">0</b></span>
+      </div>
+    </header>
+
+    <section class="stage">
+      <div class="result-card" id="resultCard">
+        <div class="result-label">Last roll</div>
+        <div id="result" class="result">–</div>
+        <div id="odds" class="odds">Tap ROLL to start</div>
+      </div>
+      <button id="rollBtn" class="roll-btn" type="button">
+        <span class="roll-fill" id="rollFill"></span>
+        <span class="roll-text">ROLL</span>
+      </button>
+      <div id="autoStatus" class="auto-status"></div>
+    </section>
+
+    <main id="panel" class="panel">
+      <section class="pane active" data-pane="upgrades"><div id="upgradeList" class="list"></div></section>
+      <section class="pane" data-pane="rebirth"><div id="rebirthPane"></div></section>
+      <section class="pane" data-pane="achievements">
+        <div class="pane-head"><h2>Achievements</h2><span id="achCount" class="muted"></span></div>
+        <div id="achList" class="ach-grid"></div>
+      </section>
+      <section class="pane" data-pane="stats"><h2>Statistics</h2><div id="statList" class="stats"></div></section>
+      <section class="pane" data-pane="settings">
+        <h2>Settings</h2>
+        <div class="card setting">
+          <div><b>Vibration</b><div class="muted small">On mega rolls (Android only)</div></div>
+          <label class="switch"><input type="checkbox" id="optVibration" /><span></span></label>
+        </div>
+        <div class="card setting">
+          <div><b>Auto-Roller</b><div class="muted small">Pause or resume automatic rolling</div></div>
+          <label class="switch"><input type="checkbox" id="optAuto" /><span></span></label>
+        </div>
+        <div class="card">
+          <b>Save data</b>
+          <div class="muted small">Copy the text to back up your progress, paste it to restore.</div>
+          <textarea id="saveText" rows="3" spellcheck="false" placeholder="Save code"></textarea>
+          <div class="row">
+            <button class="btn" id="btnExport" type="button">Export</button>
+            <button class="btn" id="btnImport" type="button">Import</button>
+          </div>
+        </div>
+        <div class="card">
+          <b>Reset</b>
+          <div class="muted small">Deletes all progress, including achievements.</div>
+          <button class="btn danger" id="btnReset" type="button">Reset game</button>
+        </div>
+        <p class="muted small center">Infinite Roll · progress is saved on this device</p>
+      </section>
+    </main>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="upgrades" type="button"><span>⬆️</span>Upgrades</button>
+      <button class="tab" data-tab="rebirth" type="button"><span>♻️</span>Rebirth<i class="dot" id="rebirthDot"></i></button>
+      <button class="tab" data-tab="achievements" type="button"><span>🏆</span>Awards</button>
+      <button class="tab" data-tab="stats" type="button"><span>📊</span>Stats</button>
+      <button class="tab" data-tab="settings" type="button"><span>⚙️</span>Settings</button>
+    </nav>
+  </div>
+
+  <canvas id="fx"></canvas>
+
+  <div id="mega" class="mega hidden">
+    <div class="mega-title" id="megaTitle">MEGA ROLL!</div>
+    <div class="mega-value" id="megaValue">0</div>
+    <div class="mega-odds" id="megaOdds"></div>
+    <div class="mega-hint">tap to continue</div>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-box">
+      <h3 id="modalTitle"></h3>
+      <div id="modalText"></div>
+      <div class="row">
+        <button class="btn" id="modalCancel" type="button">Cancel</button>
+        <button class="btn primary" id="modalOk" type="button">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toasts" class="toasts"></div>
+
+  <script src="config.js"></script>
+  <script src="logic.js"></script>
+  <script src="achievements.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
